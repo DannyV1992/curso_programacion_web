@@ -1,0 +1,27 @@
+body {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12px;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 20px;
+
+}
+
+h1 {
+    color: #0066cc;
+}
+
+a {
+    color: #cc0000;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    width: 300px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}

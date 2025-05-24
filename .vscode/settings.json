@@ -1,0 +1,44 @@
+{
+    // CONFIGURACIONES DEL EDITOR
+    "editor.fontSize": 14,                   // Tamaño de fuente (número)
+    "editor.wordWrap": "on",                 // Ajuste de línea ("on", "off", "wordWrapColumn", "bounded")
+    "editor.formatOnSave": false,            // Formatear al guardar (true/false)
+    "editor.minimap.enabled": false,         // Minimapa lateral (true/false)
+    "editor.renderWhitespace": "all",        // Mostrar espacios ("none", "boundary", "selection", "trailing", "all")
+    
+    // CONFIGURACIONES DE LA INTERFAZ
+    "workbench.colorTheme": "Default Dark+",  // Tema del editor (cualquier tema instalado)
+    "workbench.settings.editor": "json",      // Editor de configuración ("ui" o "json")
+    "workbench.startupEditor": "none",        // Editor al inicio ("none", "welcomePage", "newUntitledFile", "readme")
+    
+    // CONFIGURACIONES DE ARCHIVOS
+    "files.autoSave": "afterDelay",          // Autoguardado ("off", "afterDelay", "onFocusChange", "onWindowChange")
+    "files.autoSaveDelay": 600000,           // ASigna el tiempo de delay para autosalvar (1000 = 1 segundo), seteado en 10 minutos
+    "files.eol": "\n",                       // Fin de línea ("\n" para Unix, "\r\n" para Windows)
+    "files.encoding": "utf8",                // Codificación de archivos
+    
+    // CONFIGURACIONES DE LA TERMINAL
+    "terminal.integrated.fontSize": 12,       // Tamaño de fuente en terminal (número)
+    "terminal.integrated.shell.windows": "C:\\Windows\\System32\\cmd.exe",  // Shell por defecto
+    
+    // CONFIGURACIONES DE PYTHON
+    "python.defaultInterpreterPath": "python",  // Ruta del intérprete de Python
+    "python.formatting.provider": "autopep8",   // Formateador ("autopep8", "black", "yapf")
+    "python.linting.enabled": true,             // Activar análisis de código (true/false)
+    "python.linting.pylintEnabled": true,       // Usar Pylint (true/false)
+    
+    // CONFIGURACIONES ESPECÍFICAS PARA PYTHON
+    "[python]": {
+        "editor.formatOnSave": true,         // Formatear Python al guardar (true/false)
+        "editor.formatOnType": true,         // Formatear mientras escribes (true/false)
+        //"editor.rulers": [80],             // Líneas guía (array de números)
+        "editor.renderWhitespace": "all"     // Mostrar espacios en blanco
+    },
+    
+    // CONFIGURACIONES DE CODE RUNNER
+    "code-runner.runInTerminal": true,       // Ejecutar en terminal (true/false)
+    "code-runner.saveFileBeforeRun": true,   // Guardar antes de ejecutar (true/false)
+    "code-runner.executorMap": {
+        "python": "python -u"                // Comando para ejecutar Python
+    }
+}

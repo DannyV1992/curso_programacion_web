@@ -1,0 +1,61 @@
+--------------------------ACCESOS A GITHUB--------------------------
+Primero se debe crear un SSH key, idealmente especificar la ruta exacta
+    ssh-keygen -t ed25519 -C "dava01cr@gmail.com" -f "C:\Users\Light Force CR\.ssh\id_ed25519_personal"
+
+Si se tienen varios usuarios de GitHub crear un archivo en la carpeta .ssh llamado config:
+    # Clave para cuenta empresarial
+    Host github.com-empresa
+        HostName github.com
+        User git
+        IdentityFile ~/.ssh/id_ed25519
+
+    # Clave para cuenta personal
+    Host github.com-personal
+        HostName github.com
+        User git
+        IdentityFile ~/.ssh/id_ed25519_personal
+
+Configurar credenciales
+    git config user.email "dava01cr@gmail.com"
+    git config user.name "DannyV1992"
+
+Verificar credenciales
+    git config user.email
+    git config user.name
+
+Prueba que las claves funcionan
+    ssh -T git@github.com
+    ssh -T git@github.com-personal
+
+--------------------------REPOSITORIOS--------------------------
+Teniendo el repositorio deseado seleccionado en la ruta, configurar el acceso segun el usuario
+    git config user.name "TuNombreDeUsuarioPersonal"
+    git config user.email "TuCorreoPersonal@example.com"
+
+Moverse entre carpetas en la terminal:
+    cd ..           # Subir una carpeta (ir al directorio padre)
+    cd nombreCarpeta    # Bajar/entrar a una carpeta específica
+    cd .            # Directorio actual
+    cd ~            # Ir al directorio home del usuario
+    cd /            # Ir a la raíz del sistema
+
+    cd "H:\Mi unidad\Universidad\Ulead\Repos\curso_estructura_datos"            # Selecionar una direcion especifica
+
+Luego de seleccionar la ruta, clonar el repo
+    git clone https://github.com/DannyV1992/curso_estructura_datos
+O si se quiere especificar donde copiar el repo
+    git clone <url_del_repositorio> "H:\Mi unidad\Universidad\Ulead\Repos\nombre_carpeta"
+
+Luego, abrir el folder donde el repo esta clonado en VS code.
+Si existe otro repo, utilizar la opcion "Add floder to workspace"
+
+--------------------------AMBIENTE DE PYTHON--------------------------
+En la terminal ejecutar el comando para crear el ambiente de PYTHON (el ultimo es el nombre del ambiente)
+    python -m venv .env
+
+Activar el ambiente
+    .env\Scripts\activate
+
+--------------------------REQUISITOS--------------------------
+Se debe crear un archivo txt para agregar todas las dependencias, se debe correr el comando cada vez que una dependencia nueva es agregada
+   pip freeze > requirements.txt

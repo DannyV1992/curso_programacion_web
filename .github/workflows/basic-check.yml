@@ -1,0 +1,14 @@
+name: Basic Check
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  merge_group:
+
+jobs:
+  basic-check:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Basic Check
+      run: exit 0

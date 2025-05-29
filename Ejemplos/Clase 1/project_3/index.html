@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Dashboard de Datos</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="app.js"></script>
+    </head>
+
+    <body>
+        <h1>Panel de Visualización</h1>
+        <p><strong>Bienvenido</strong> al dashboard interactivo de <em>datos.</em></p>
+
+        <div>
+            <h2>Imagen destacada</h2>
+            <img src="grafico.png" alt="Gráfico de datos">
+        </div>
+
+        <div>
+            <h2>Formulario de búsqueda</h2>
+            <form>
+                <label for="categoria">Categoría:</label>
+                <select id="categoria" name="categoria">
+                    <option value="ventas">Ventas</option>
+                    <option value="clientes">Clientes</option>
+                </select><br><br>
+
+                <label for="rango">Rango de fechas:</label>
+                <input type="date" id="rango" name="rango"><br><br>
+
+                <label for="comentarios">Comentarios:</label><br>
+                <textarea id="comentarios" name="comentarios" rows="4" cols="40"></textarea><br><br>
+
+                <button type="submit">Filtrar</button>
+            </form>
+        </div>
+
+        <div>
+            <h2>Tabla de Resultados</h2>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Valor</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Producto A</td>
+                    <td>$150</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Producto B</td>
+                    <td>$200</td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>

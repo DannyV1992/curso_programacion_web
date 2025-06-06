@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ciencia para todos</title>
+        <link rel="stylesheet" href="styles/styles.css">
+    </head>
+    <body>
+        <header>
+            <h1>Ciencia para Todos</h1>
+            <nav>
+                <ul>
+                    <li><a href="#curiosidades">Curiosidades</a></li>
+                    <li><a href="#galeria">Galería</a></li>
+                    <li><a href="#descubrimientos">Descubrimientos</a></li>
+                    <li><a href="#pregunta">Envía tu pregunta</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section id="curiosidades">
+                <h2>Curiosidades científicas</h2>
+                <ul>
+                    <li>¿Sabías que la luz del Sol tarda 8 minutos en llegar a la Tierra?</li>
+                    <li>El ADN humano tiene aproximadamente 3 mil millones de pares de bases.</li>
+                    <li>Las abejas pueden reconocer rostros humanos.</li>
+                </ul>
+            </section>
+
+            <section id="galeria">
+                <h2>Galería de imágenes científicas</h2>
+                    <div class="galeria">
+                        <img src="assets/galaxia.jpg" alt="Galaxia">
+                        <img src="assets/microscopio.jpg" alt="Microscopio">
+                        <img src="assets/abeja.jpg" alt="Abeja">
+                    </div>
+            </section>
+
+            <section id="descubrimientos">
+                <h2>Descubrimientos históricos</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Año</th>
+                            <th>Descubrimiento</th>
+                            <th>Científico</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1687</td>
+                            <td>Leyes del movimiento</td>
+                            <td>Isaac Newton</td>
+                        </tr>
+                        <tr>
+                            <td>1928</td>
+                            <td>Penicilina</td>
+                            <td>Alexander Fleming</td>
+                        </tr>
+                        <tr>
+                            <td>1953</td>
+                            <td>Estructura del ADN</td>
+                            <td>Watson y Crick</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="pregunta">
+                <h2>Envía tu pregunta científica</h2>
+                <form>
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+
+                    <label for="email">Correo electrónico:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="pregunta">Pregunta:</label>
+                    <textarea id="pregunta" name="pregunta" rows="4"></textarea>
+
+                    <button type="submit">Enviar</button>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Ciencia para todos. Inspirando curiosidad.</p>
+        </footer>
+    </body>
+</html>
+
+

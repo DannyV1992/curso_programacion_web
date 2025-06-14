@@ -1,0 +1,53 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Registro de Leads - Simulador de Salesforce</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+
+    <body>
+        <h1>CRM Simulado - Registro de Oportunidades</h1>
+
+        <!-- Menú de navegación -->
+        <nav>
+            <button onclick="mostrarFormulario()">Agregar nuevo lead</button>
+            <button onclick="mostrarTabla()">Control de ventas</button>
+            <button onclick="exportarCSV()">Exportar a CSV</button>
+        </nav>
+
+        <!-- Formulario Lead -->
+        <section id="formularioLead" style="display: none;">
+            <h2>Agregar nuevo lead</h2>
+            <form id="formLead">
+                <input type="text" id="nombre" placeholder="Nombre del contacto" required>
+                <input type="text" id="apellido" placeholder="Apellido del contacto" required>
+                <input type="text" id="empresa" placeholder="Nombre de la empresa (Cuenta)" required>
+                <input type="tel" id="telefono" placeholder="Número de teléfono" required>
+                <input type="email" id="correo" placeholder="Correo electrónico" required>
+                <textarea id="oportunidad" placeholder="Descripción de la oportunidad" required></textarea>
+                <button type="submit">Guardar lead</button>
+            </form>
+        </section>
+
+        <!-- Tabla de control de ventas -->
+        <section id="tablaVentas" style="display: none;">
+            <h2>Control de ventas</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Contacto</th>
+                        <th>Empresa</th>
+                        <th>Teléfono</th>
+                        <th>Correo</th>
+                        <th>Oportunidad</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody id="bodyVentas"></tbody>
+            </table>
+        </section>
+        <script src="script.js"></script>
+    </body>
+</html>

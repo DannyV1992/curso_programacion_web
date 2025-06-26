@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro Diario de Tareas - Técnicos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Registro Diario de Tareas</h1>
+        
+        <div id="loginSection">
+            <label for="email">Correo electrónico del técnico:</label>
+            <input type="email" id="email" required>
+            <button id="btnLogin">Ingresar</button>
+        </div>
+        <div id="mensaje"></div>
+        
+        <div id="mainSection" style="display:none;">
+            <div class="acciones">
+                <button id="btnAgregarFila">Agregar Nueva Tarea</button>
+            </div>
+            <table id="tablaTareas">
+                <thead>
+                    <tr>
+                        <th>Tarea</th>
+                        <th>Subtarea</th>
+                        <th>Completada</th>
+                        <th>Inicio</th>
+                        <th>Fin</th>
+                        <th>Acciones</th>
+                        <th>Comentario</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Las filas se agregan dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+

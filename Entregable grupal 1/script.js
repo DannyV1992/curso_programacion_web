@@ -8,6 +8,11 @@ const addRowBtn = document.getElementById("addRow");
 const saveAllBtn = document.getElementById("saveAll");
 const mensajeDiv = document.getElementById("mensaje");
 
+// Utilidad para formato MySQL timestamp
+function getMySQLDateTimeString(dateObj) {
+    return dateObj.toISOString().replace('T', ' ').slice(0, 19);
+}
+
 // Función para añadir una nueva fila vacía
 function addNewRow() {
     const newRow = document.createElement("tr");
@@ -88,8 +93,8 @@ function addNewRow() {
                 option.textContent = sub;
                 selectSubtarea.appendChild(option);
             });
-            // Registrar hora de inicio
-            inputHoraInicio.value = new Date().toISOString().slice(0, 16).replace("T", " ");
+            // Registrar hora de inicio en formato MySQL
+            inputHoraInicio.value = getMySQLDateTimeString(new Date());
         } else {
             selectSubtarea.disabled = true;
             inputHoraInicio.value = "";
@@ -98,7 +103,7 @@ function addNewRow() {
 
     checkCompletado.addEventListener("change", function() {
         if (this.checked) {
-            inputHoraFinal.value = new Date().toISOString().slice(0, 16).replace("T", " ");
+            inputHoraFinal.value = getMySQLDateTimeString(new Date());
         } else {
             inputHoraFinal.value = "";
         }
@@ -191,4 +196,3 @@ saveAllBtn.addEventListener("click", saveAllTasks);
 
 // Añadir fila inicial
 addNewRow();
-

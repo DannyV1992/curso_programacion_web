@@ -8,7 +8,7 @@ const addRowBtn = document.getElementById("addRow");
 const saveAllBtn = document.getElementById("saveAll");
 const mensajeDiv = document.getElementById("mensaje");
 
-// Crear nueva fila
+// Función para añadir una nueva fila vacía
 function addNewRow() {
     const newRow = document.createElement("tr");
     
@@ -16,15 +16,13 @@ function addNewRow() {
     const tdTarea = document.createElement("td");
     const selectTarea = document.createElement("select");
     selectTarea.className = "task-select";
-    selectTarea.innerHTML = '<option value="">Seleccionar Tarea</option>';
-    
+    selectTarea.innerHTML = '<option value="">Seleccionar tarea</option>';
     tareas.forEach(tarea => {
         const option = document.createElement("option");
         option.value = tarea.nombre;
         option.textContent = tarea.nombre;
         selectTarea.appendChild(option);
     });
-    
     tdTarea.appendChild(selectTarea);
     newRow.appendChild(tdTarea);
 
@@ -82,7 +80,6 @@ function addNewRow() {
     selectTarea.addEventListener("change", function() {
         const selectedTarea = tareas.find(t => t.nombre === this.value);
         selectSubtarea.innerHTML = "";
-        
         if (selectedTarea) {
             selectSubtarea.disabled = false;
             selectedTarea.subtareas.forEach(sub => {
@@ -91,7 +88,6 @@ function addNewRow() {
                 option.textContent = sub;
                 selectSubtarea.appendChild(option);
             });
-            
             // Registrar hora de inicio
             inputHoraInicio.value = new Date().toISOString().slice(0, 16).replace("T", " ");
         } else {
@@ -113,7 +109,22 @@ function addNewRow() {
     });
 }
 
-// Guardar todas las tareas
+// Función para limpiar el formulario (dejar solo una fila vacía)
+function limpiarFormulario() {
+    while (tableBody.firstChild) {
+        tableBody.removeChild(tableBody.firstChild);
+    }
+    addNewRow();
+}
+
+// Función para mostrar mensajes
+function showMessage(text, type) {
+    mensajeDiv.textContent = text;
+    mensajeDiv.className = type;
+    setTimeout(() => mensajeDiv.textContent = "", 5000);
+}
+
+// Función para guardar todas las tareas
 async function saveAllTasks() {
     const userEmail = document.getElementById("userEmail").value;
     if (!userEmail) {
@@ -166,16 +177,12 @@ async function saveAllTasks() {
 
         const result = await response.json();
         showMessage(result.mensaje, "success");
+        if (response.ok) {
+            limpiarFormulario();
+        }
     } catch (error) {
         showMessage("Error al guardar tareas: " + error.message, "error");
     }
-}
-
-// Mostrar mensajes
-function showMessage(text, type) {
-    mensajeDiv.textContent = text;
-    mensajeDiv.className = type;
-    setTimeout(() => mensajeDiv.textContent = "", 5000);
 }
 
 // Event Listeners

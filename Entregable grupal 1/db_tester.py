@@ -1,4 +1,4 @@
-import mysql.connector
+'''import mysql.connector
 
 db = mysql.connector.connect(
     host="localhost",
@@ -21,8 +21,7 @@ db = mysql.connector.connect(
     database="manufacturing_logs"
 )
 cursor = db.cursor()
-cursor.execute("INSERT INTO tech_logs (email, task, subtask, completed, started_at, end_at, comentario) VALUES ('test@test.com', 'Mantenimiento', 'Lubricación', 1, '2025-06-26T14:00:00', '2025-06-26T14:30:00', 'OK')")
+cursor.execute("INSERT INTO tech_logs (email, task, subtask, started_at, end_at, comentario) VALUES ('test@test.com', 'Mantenimiento', 'Lubricación', '2025-06-26T14:00:00', '2025-06-26T14:30:00', 'TEST')")
 db.commit()
 cursor.close()
 db.close()
-'''

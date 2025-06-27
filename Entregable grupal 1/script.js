@@ -1,182 +1,187 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Elementos principales
-    const loginSection = document.getElementById('loginSection');
-    const mainSection = document.getElementById('mainSection');
-    const btnLogin = document.getElementById('btnLogin');
-    const emailInput = document.getElementById('email');
-    const tablaTareas = document.getElementById('tablaTareas').getElementsByTagName('tbody')[0];
-    const btnAgregarFila = document.getElementById('btnAgregarFila');
-    const mensajeDiv = document.getElementById('mensaje');
+const tareas = [
+    { nombre: "Mantenimiento", subtareas: ["Lubricación", "Inspección", "Ajuste"] },
+    { nombre: "Producción", subtareas: ["Montaje", "Verificación"] }
+];
 
-    // Mapeo de tareas y subtareas (ejemplo)
-    const tareasSubtareas = {
-        "Mantenimiento": ["Lubricación", "Cambio de filtro", "Ajuste de componentes"],
-        "Reparación": ["Diagnóstico", "Reemplazo de pieza", "Prueba funcional"],
-        "Calibración": ["Ajuste de parámetros", "Verificación de precisión"],
-        "Inspección": ["Visual", "Medición", "Prueba no destructiva"]
-    };
+const tableBody = document.querySelector("#tareasTable tbody");
+const addRowBtn = document.getElementById("addRow");
+const saveAllBtn = document.getElementById("saveAll");
+const mensajeDiv = document.getElementById("mensaje");
 
-    // Variables globales
-    let tecnicoEmail = "";
+// Crear nueva fila
+function addNewRow() {
+    const newRow = document.createElement("tr");
+    
+    // Columna Tarea (dropdown)
+    const tdTarea = document.createElement("td");
+    const selectTarea = document.createElement("select");
+    selectTarea.className = "task-select";
+    selectTarea.innerHTML = '<option value="">Seleccionar Tarea</option>';
+    
+    tareas.forEach(tarea => {
+        const option = document.createElement("option");
+        option.value = tarea.nombre;
+        option.textContent = tarea.nombre;
+        selectTarea.appendChild(option);
+    });
+    
+    tdTarea.appendChild(selectTarea);
+    newRow.appendChild(tdTarea);
 
-    // Login de técnico
-    btnLogin.addEventListener('click', function() {
-        const email = emailInput.value.trim();
-        if (!validarEmail(email)) {
-            mostrarMensaje("Por favor, ingresa un correo válido", "red");
+    // Columna Subtarea (dropdown)
+    const tdSubtarea = document.createElement("td");
+    const selectSubtarea = document.createElement("select");
+    selectSubtarea.className = "subtask-select";
+    selectSubtarea.disabled = true;
+    tdSubtarea.appendChild(selectSubtarea);
+    newRow.appendChild(tdSubtarea);
+
+    // Hora Inicio (automática)
+    const tdHoraInicio = document.createElement("td");
+    const inputHoraInicio = document.createElement("input");
+    inputHoraInicio.type = "text";
+    inputHoraInicio.readOnly = true;
+    tdHoraInicio.appendChild(inputHoraInicio);
+    newRow.appendChild(tdHoraInicio);
+
+    // Hora Final (automática)
+    const tdHoraFinal = document.createElement("td");
+    const inputHoraFinal = document.createElement("input");
+    inputHoraFinal.type = "text";
+    inputHoraFinal.readOnly = true;
+    tdHoraFinal.appendChild(inputHoraFinal);
+    newRow.appendChild(tdHoraFinal);
+
+    // Comentarios
+    const tdComentarios = document.createElement("td");
+    const inputComentarios = document.createElement("input");
+    inputComentarios.type = "text";
+    inputComentarios.placeholder = "Ingresar comentarios";
+    tdComentarios.appendChild(inputComentarios);
+    newRow.appendChild(tdComentarios);
+
+    // Completado (checkbox)
+    const tdCompletado = document.createElement("td");
+    const checkCompletado = document.createElement("input");
+    checkCompletado.type = "checkbox";
+    checkCompletado.className = "check-completed";
+    tdCompletado.appendChild(checkCompletado);
+    newRow.appendChild(tdCompletado);
+
+    // Eliminar (botón)
+    const tdEliminar = document.createElement("td");
+    const btnEliminar = document.createElement("button");
+    btnEliminar.className = "delete-btn";
+    btnEliminar.innerHTML = "X";
+    tdEliminar.appendChild(btnEliminar);
+    newRow.appendChild(tdEliminar);
+
+    tableBody.appendChild(newRow);
+
+    // Event listeners
+    selectTarea.addEventListener("change", function() {
+        const selectedTarea = tareas.find(t => t.nombre === this.value);
+        selectSubtarea.innerHTML = "";
+        
+        if (selectedTarea) {
+            selectSubtarea.disabled = false;
+            selectedTarea.subtareas.forEach(sub => {
+                const option = document.createElement("option");
+                option.value = sub;
+                option.textContent = sub;
+                selectSubtarea.appendChild(option);
+            });
+            
+            // Registrar hora de inicio
+            inputHoraInicio.value = new Date().toISOString().slice(0, 16).replace("T", " ");
+        } else {
+            selectSubtarea.disabled = true;
+            inputHoraInicio.value = "";
+        }
+    });
+
+    checkCompletado.addEventListener("change", function() {
+        if (this.checked) {
+            inputHoraFinal.value = new Date().toISOString().slice(0, 16).replace("T", " ");
+        } else {
+            inputHoraFinal.value = "";
+        }
+    });
+
+    btnEliminar.addEventListener("click", function() {
+        tableBody.removeChild(newRow);
+    });
+}
+
+// Guardar todas las tareas
+async function saveAllTasks() {
+    const userEmail = document.getElementById("userEmail").value;
+    if (!userEmail) {
+        showMessage("Por favor ingrese un email válido", "error");
+        return;
+    }
+
+    const rows = tableBody.querySelectorAll("tr");
+    if (rows.length === 0) {
+        showMessage("No hay tareas para guardar", "warning");
+        return;
+    }
+
+    const tasksData = [];
+    let hasErrors = false;
+
+    rows.forEach(row => {
+        const task = row.querySelector(".task-select").value;
+        const subtask = row.querySelector(".subtask-select").value;
+        const startTime = row.querySelector("td:nth-child(3) input").value;
+        const endTime = row.querySelector("td:nth-child(4) input").value;
+        const comments = row.querySelector("td:nth-child(5) input").value;
+        
+        if (!task || !subtask) {
+            hasErrors = true;
             return;
         }
-        tecnicoEmail = email;
-        loginSection.style.display = "none";
-        mainSection.style.display = "block";
-        agregarFilaInicial();
+
+        tasksData.push({
+            email: userEmail,
+            task,
+            subtask,
+            started_at: startTime,
+            end_at: endTime,
+            comentario: comments
+        });
     });
 
-    function validarEmail(email) {
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return regex.test(email);
-    }
-    
-    // Event delegation para eliminar filas
-    tablaTareas.addEventListener('click', function(e) {
-        if (e.target.classList.contains('btnEliminar')) {
-            if (confirm("¿Eliminar esta tarea?")) {
-                e.target.closest('tr').remove();
-                mostrarMensaje("Tarea eliminada");
-            }
-        }
-    });
-
-    // Agregar nueva fila
-    btnAgregarFila.addEventListener('click', agregarNuevaFila);
-
-    // Funciones auxiliares
-    function mostrarMensaje(texto, color = "green") {
-        mensajeDiv.textContent = texto;
-        mensajeDiv.style.color = color;
-        setTimeout(() => mensajeDiv.textContent = "", 5000);
+    if (hasErrors) {
+        showMessage("Algunas tareas están incompletas", "error");
+        return;
     }
 
-    function obtenerTimestamp() {
-        return new Date().toISOString();
-    }
-
-    function crearSelect(opciones = [], placeholder = "Seleccionar") {
-        const select = document.createElement('select');
-        select.innerHTML = `<option value="">${placeholder}</option>`;
-        opciones.forEach(opcion => {
-            select.innerHTML += `<option value="${opcion}">${opcion}</option>`;
-        });
-        return select;
-    }
-
-    function crearTextarea(placeholder) {
-        const textarea = document.createElement('textarea');
-        textarea.placeholder = placeholder;
-        return textarea;
-    }
-
-    function crearBoton(texto, clase) {
-        const boton = document.createElement('button');
-        boton.textContent = texto;
-        boton.classList.add(clase);
-        return boton;
-    }
-
-    async function guardarTarea(tareaData) {
-        try {
-            const respuesta = await fetch("http://localhost:8000/tarea", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(tareaData)
-            });
-            const resultado = await respuesta.json();
-            mostrarMensaje(resultado.mensaje || "Tarea guardada en sistema");
-            setTimeout(() => agregarNuevaFila(), 500);
-        } catch (error) {
-            mostrarMensaje("Error al guardar tarea: " + error.message, "red");
-        }
-    }
-
-    function agregarFilaInicial() {
-        const fila = tablaTareas.insertRow();
-        configurarFila(fila);
-    }
-
-    function agregarNuevaFila() {
-        const fila = tablaTareas.insertRow();
-        configurarFila(fila);
-        mostrarMensaje("Nueva fila agregada");
-    }
-
-    function configurarFila(fila) {
-        // Celdas
-        const celdaTask = fila.insertCell(0);
-        const celdaSubtask = fila.insertCell(1);
-        const celdaCompleted = fila.insertCell(2);
-        const celdaInicio = fila.insertCell(3);
-        const celdaFin = fila.insertCell(4);
-        const celdaAcciones = fila.insertCell(5);
-        const celdaComentario = fila.insertCell(6);
-
-        // Task select
-        const selectTask = crearSelect(Object.keys(tareasSubtareas), "Seleccionar Task");
-        celdaTask.appendChild(selectTask);
-
-        // Subtask select
-        const selectSubtask = crearSelect([], "Seleccionar Subtask");
-        selectSubtask.disabled = true;
-        celdaSubtask.appendChild(selectSubtask);
-
-        // Comentario
-        const textareaComentario = crearTextarea("Agregar comentario...");
-        celdaComentario.appendChild(textareaComentario);
-
-        // Timestamps
-        celdaInicio.textContent = "--";
-        celdaFin.textContent = "--";
-
-        // Checkbox
-        const checkboxCompleted = document.createElement('input');
-        checkboxCompleted.type = "checkbox";
-        celdaCompleted.appendChild(checkboxCompleted);
-
-        // Botón Eliminar
-        const btnEliminar = crearBoton("Eliminar", "btnEliminar");
-        celdaAcciones.appendChild(btnEliminar);
-
-        // Eventos
-        selectTask.addEventListener('change', function() {
-            selectSubtask.disabled = false;
-            selectSubtask.innerHTML = '<option value="">Seleccionar Subtask</option>';
-            tareasSubtareas[selectTask.value].forEach(subtask => {
-                selectSubtask.innerHTML += `<option value="${subtask}">${subtask}</option>`;
-            });
-            const ahora = obtenerTimestamp();
-            celdaInicio.textContent = new Date(ahora).toLocaleString();
-            fila.dataset.startedAt = ahora;
+    try {
+        const response = await fetch("http://localhost:8000/guardar-tareas", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(tasksData)
         });
 
-        checkboxCompleted.addEventListener('change', async function() {
-            if (checkboxCompleted.checked) {
-                const ahora = obtenerTimestamp();
-                celdaFin.textContent = new Date(ahora).toLocaleString();
-                fila.dataset.endAt = ahora;
-                selectTask.disabled = true;
-                selectSubtask.disabled = true;
-                textareaComentario.disabled = true;
-                checkboxCompleted.disabled = true;
-                const tareaData = {
-                    email: tecnicoEmail,
-                    task: selectTask.value,
-                    subtask: selectSubtask.value,
-                    completed: true,
-                    started_at: fila.dataset.startedAt,
-                    end_at: fila.dataset.endAt,
-                    comentario: textareaComentario.value
-                };
-                await guardarTarea(tareaData);
-            }
-        });
+        const result = await response.json();
+        showMessage(result.mensaje, "success");
+    } catch (error) {
+        showMessage("Error al guardar tareas: " + error.message, "error");
     }
-});
+}
+
+// Mostrar mensajes
+function showMessage(text, type) {
+    mensajeDiv.textContent = text;
+    mensajeDiv.className = type;
+    setTimeout(() => mensajeDiv.textContent = "", 5000);
+}
+
+// Event Listeners
+addRowBtn.addEventListener("click", addNewRow);
+saveAllBtn.addEventListener("click", saveAllTasks);
+
+// Añadir fila inicial
+addNewRow();
+

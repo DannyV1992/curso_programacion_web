@@ -32,18 +32,15 @@ def conectar_db():
 
 @app.post("/guardar-lead")
 def guardar_lead(lead: Lead):
-    try:
-        db = conectar_db()
-        cursor = db.cursor()
-        sql = """
-        INSERT INTO leads (nombre, apellido, empresa, telefono, correo, oportunidad)
-        VALUES (%s, %s, %s, %s, %s, %s)
-        """
-        valores = (lead.nombre, lead.apellido, lead.empresa, lead.telefono, lead.correo, lead.oportunidad)
-        cursor.execute(sql, valores)
-        db.commit()
-        cursor.close()
-        db.close()
-        return {"mensaje": "Lead guardado con éxito"}
-    except Exception as e:
-        return {"mensaje": f"Error: {str(e)}"}
+    db = conectar_db()
+    cursor = db.cursor()
+    sql = """
+    INSERT INTO leads (nombre, apellido, empresa, telefono, correo, oportunidad)
+    VALUES (%s, %s, %s, %s, %s, %s)
+    """
+    valores = (lead.nombre, lead.apellido, lead.empresa, lead.telefono, lead.correo, lead.oportunidad)
+    cursor.execute(sql, valores)
+    db.commit()
+    cursor.close()
+    db.close()
+    return {"mensaje": "Lead guardado con éxito"}

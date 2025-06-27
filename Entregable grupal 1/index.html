@@ -2,43 +2,39 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Registro Diario de Tareas - Técnicos</title>
+    <title>Registro de Tareas</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="contenedor">
         <h1>Registro Diario de Tareas</h1>
-        
-        <div id="loginSection">
-            <label for="email">Correo electrónico del técnico:</label>
-            <input type="email" id="email" required>
-            <button id="btnLogin">Ingresar</button>
+        <div class="email-input">
+            <label>Email del Usuario:</label>
+            <input type="email" id="userEmail" required>
         </div>
+        
+        <table id="tareasTable">
+            <thead>
+                <tr>
+                    <th>Tarea</th>
+                    <th>Subtarea</th>
+                    <th>Hora Inicio</th>
+                    <th>Hora Final</th>
+                    <th>Comentarios</th>
+                    <th>Completado</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Filas generadas dinámicamente -->
+            </tbody>
+        </table>
+        
+        <button id="addRow">+ Añadir Fila</button>
+        <button id="saveAll">Guardar Todas las Tareas</button>
         <div id="mensaje"></div>
-        
-        <div id="mainSection" style="display:none;">
-            <div class="acciones">
-                <button id="btnAgregarFila">Agregar Nueva Tarea</button>
-            </div>
-            <table id="tablaTareas">
-                <thead>
-                    <tr>
-                        <th>Tarea</th>
-                        <th>Subtarea</th>
-                        <th>Completada</th>
-                        <th>Inicio</th>
-                        <th>Fin</th>
-                        <th>Acciones</th>
-                        <th>Comentario</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Las filas se agregan dinámicamente -->
-                </tbody>
-            </table>
-        </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
-

@@ -1,8 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from fastapi.responses import JSONResponse
+from fastapi import FastAPI, HTTPException
 from typing import List
 import mysql.connector
+
 
 app = FastAPI()
 
@@ -33,6 +36,7 @@ def conectar_db():
 
 @app.post("/guardar-tareas")
 def guardar_tareas(tareas: List[TaskLog]):
+    print("¡Llegó una petición!")
     db = conectar_db()
     cursor = db.cursor()
     
@@ -55,6 +59,7 @@ def guardar_tareas(tareas: List[TaskLog]):
         db.commit()
         return {"mensaje": f"{len(tareas)} tareas guardadas con éxito"}
     
+
     except Exception as e:
         db.rollback()
         return {"error": str(e)}
@@ -62,6 +67,35 @@ def guardar_tareas(tareas: List[TaskLog]):
     finally:
         cursor.close()
         db.close()
+
+#Consultar tareas
+
+@app.get("/consultar-tareas")  
+async def consultar_tareas(email: str):
+    db = conectar_db()
+    cursor = db.cursor(dictionary=True)
+    
+    try:
+        cursor.execute(
+            "SELECT * FROM tech_logs WHERE email = %s ORDER BY started_at DESC",
+            (email,)
+        )
+        resultados = cursor.fetchall()
+        
+        if not resultados:
+            return JSONResponse(
+                status_code=404,
+                content={"message": "No se encontraron tareas"}
+            )
+        
+        return {"tareas": resultados}
+    
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+    finally:
+        cursor.close()
+        db.close()
+
 
 if __name__ == "__main__":
     import uvicorn

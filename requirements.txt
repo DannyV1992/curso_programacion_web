@@ -1,4 +1,0 @@
-fastapi
-pydantic
-mysql-connector-python
-uvicorn[standard]

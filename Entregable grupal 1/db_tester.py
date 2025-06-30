@@ -1,4 +1,4 @@
-'''import mysql.connector
+import mysql.connector
 
 db = mysql.connector.connect(
     host="localhost",
@@ -17,7 +17,7 @@ db = mysql.connector.connect(
     host="localhost",
     port=3306,
     user="root",
-    password="root",
+    password="123Queso.",
     database="manufacturing_logs"
 )
 cursor = db.cursor()
@@ -25,3 +25,4 @@ cursor.execute("INSERT INTO tech_logs (email, task, subtask, started_at, end_at,
 db.commit()
 cursor.close()
 db.close()
+'''

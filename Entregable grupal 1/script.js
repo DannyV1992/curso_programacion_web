@@ -196,3 +196,69 @@ saveAllBtn.addEventListener("click", saveAllTasks);
 
 // Añadir fila inicial
 addNewRow();
+
+
+// Función de consulta
+document.getElementById('btnConsulta').addEventListener('click', consultarTareas);
+
+async function consultarTareas() {
+    const email = document.getElementById('emailConsulta').value;
+    
+    if (!email) {
+        alert('Ingrese un email para consultar');
+        return;
+    }
+
+    try {
+        const response = await fetch(`http://localhost:8000/consultar-tareas?email=${encodeURIComponent(email)}`);
+        const data = await response.json();
+        
+        if (!response.ok) throw new Error(data.detail || 'Error en la consulta');
+        
+        mostrarResultados(data.tareas);
+    } catch (error) {
+        alert('Error: ' + error.message);
+    }
+}
+
+function mostrarResultados(tareas) {
+    const contenedor = document.getElementById('resultadosConsulta');
+    
+    if (!tareas || tareas.length === 0) {
+        contenedor.innerHTML = '<p>No se encontraron tareas</p>';
+        return;
+    }
+    
+    let html = `
+    <table class="tabla-resultados">
+        <tr>
+            <th>Tarea</th>
+            <th>Subtarea</th>
+            <th>Fecha</th>
+            <th>Duración</th>
+        </tr>`;
+    
+    tareas.forEach(tarea => {
+        const inicio = new Date(tarea.started_at);
+        const fin = tarea.end_at ? new Date(tarea.end_at) : null;
+        const duracion = fin ? calcularDuracion(inicio, fin) : 'Pendiente';
+        
+        html += `
+        <tr>
+            <td>${tarea.task}</td>
+            <td>${tarea.subtask}</td>
+            <td>${inicio.toLocaleDateString('es-ES')}</td>
+            <td>${duracion}</td>
+        </tr>`;
+    });
+    
+    html += '</table>';
+    contenedor.innerHTML = html;
+}
+
+function calcularDuracion(inicio, fin) {
+    const minutos = Math.round((fin - inicio) / (1000 * 60));
+    return minutos > 60 ? 
+        `${Math.floor(minutos / 60)}h ${minutos % 60}m` : 
+        `${minutos}m`;
+}

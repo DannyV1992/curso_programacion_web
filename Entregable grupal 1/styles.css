@@ -121,3 +121,43 @@ button:hover {
     text-align: center;
     font-size: 16px;
 }
+
+/* ESTILOS PARA LA CONSULTA */
+.consulta-section {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 2px solid #3498db;
+}
+
+.filtro-consulta {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.filtro-consulta input {
+    flex-grow: 1;
+    padding: 8px;
+}
+
+#btnConsulta {
+    padding: 8px 15px;
+    background-color: #4CAF50;
+}
+
+.tabla-resultados {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+}
+
+.tabla-resultados th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.tabla-resultados td, .tabla-resultados th {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+}

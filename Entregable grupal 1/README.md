@@ -23,7 +23,7 @@ Este proyecto es una **aplicación web** para registrar y consultar tareas diari
 
 - Python 3.8+
 - MySQL Server
-- Navegador web moderno
+- Navegador web
 
 ### 2. Configuración de la base de datos
 
@@ -71,7 +71,7 @@ Este proyecto es una **aplicación web** para registrar y consultar tareas diari
 
 ## Uso de la aplicación
 
-### Registrar Tareas
+### Registrar tareas
 
 - Ingresa tu email.
 - Añade filas para nuevas tareas y subtareas.

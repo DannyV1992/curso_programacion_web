@@ -127,7 +127,7 @@ Este proyecto es una **aplicación web** para registrar y consultar tareas diari
 ---
 
 ## Autor
-Daniel Vásquez González
-Susana Herrera Fonseca
-Kendra Gutiérrez Vega
+- Daniel Vásquez González
+- Susana Herrera Fonseca
+- Kendra Gutiérrez Vega
 

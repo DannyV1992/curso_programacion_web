@@ -1,4 +1,4 @@
-# Registro Diario de Tareas — Curso de Programación Web
+# Registro diario de tareas
 
 Este proyecto es una **aplicación web** para registrar y consultar tareas diarias, diseñada como práctica para un curso de programación web. Incluye un frontend en HTML, CSS y JavaScript, y un backend en Python con FastAPI, utilizando MySQL como base de datos.
 

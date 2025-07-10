@@ -46,6 +46,7 @@ Luego de seleccionar la ruta, clonar el repo
 O si se quiere especificar donde copiar el repo
     git clone <url_del_repositorio> "H:\Mi unidad\Universidad\Ulead\Repos\nombre_carpeta"
 
+
 Luego, abrir el folder donde el repo esta clonado en VS code.
 Si existe otro repo, utilizar la opcion "Add floder to workspace"
 

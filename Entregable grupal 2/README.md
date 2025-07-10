@@ -1,4 +1,4 @@
-# Gestor de Tareas con Subtareas Dependientes
+# Gestor de tareas de mantenimiento
 
 Este proyecto es una aplicación web desarrollada en **Python** usando **Streamlit** y **SQLAlchemy** para la gestión de tareas y subtareas dependientes, con almacenamiento en **MySQL**.
 

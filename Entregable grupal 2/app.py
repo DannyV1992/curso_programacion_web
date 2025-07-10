@@ -29,7 +29,7 @@ tareas_dict = {
     "Producción": ["Montaje", "Verificación"],
 }
 
-st.title("Gestor de Tareas con Subtareas Dependientes")
+st.title("Gestor de tareas de mantenimiento")
 
 # Estado inicial
 if "tarea" not in st.session_state:

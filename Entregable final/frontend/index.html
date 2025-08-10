@@ -1,0 +1,78 @@
+<!--/*PAGINA PRINCIPAL*/-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Refugio Patitas - Inicio</title>
+
+  <!-- Solo estos estilos en el head -->
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../css/home.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Barra lateral (única instancia) -->
+    <div class="sidebar">
+      <div class="logo">
+        <img src="frontend/assets/logo-refugio.png" alt="Logo Refugio">
+        <h2>Refugio Patitas</h2>
+      </div>
+      <div class="nav-menu">
+        <div class="nav-item active" data-section="home"><i class="fas fa-home"></i><span>Inicio</span></div>
+        <div class="nav-item" data-section="tasks"><i class="fas fa-tasks"></i><span>Tareas</span></div>
+        <div class="nav-item" data-section="pets"><i class="fas fa-paw"></i><span>Mascotas</span></div>
+        <div class="nav-item" data-section="adopters"><i class="fas fa-users"></i><span>Adoptantes</span></div>
+        <div class="nav-item" data-section="vets"><i class="fas fa-user-md"></i><span>Veterinarios</span></div>
+        <div class="nav-item" data-section="volunteers"><i class="fas fa-hands-helping"></i><span>Voluntarios</span></div>
+        <div class="nav-item" data-section="inventory"><i class="fas fa-box-open"></i><span>Inventario</span></div>
+        <div class="nav-item" data-section="donations"><i class="fas fa-donate"></i><span>Donaciones</span></div>
+      </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="main-content">
+      <div class="header">
+        <div class="page-title">
+          <h1 id="main-title">Bienvenidos a Refugio Patitas</h1>
+          <p id="main-subtitle">Transformando vidas a través de adopciones responsables</p>
+        </div>
+        <div class="user-profile">
+          <img src="frontend/assets/user-avatar.jpg" alt="Usuario">
+          <span>Administrador</span>
+        </div>
+      </div>
+
+      <!-- Contenedor dinámico (solo aquí cambia el contenido) -->
+      <div id="content-section">
+        <!-- Contenido de inicio se carga aquí dinámicamente -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/frontend/app.js"></script>
+  
+  <!-- Carga inicial del contenido home -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Carga el contenido inicial del home
+      fetch('htmls/home-content.html')
+        .then(response => response.text())
+        .then(html => {
+          document.getElementById('content-section').innerHTML = html;
+        })
+        .catch(error => {
+          console.error('Error loading home content:', error);
+          document.getElementById('content-section').innerHTML = `
+            <div class="error">
+              <p>Error al cargar el contenido inicial</p>
+            </div>
+          `;
+        });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!-- inventario.html-->
+<div id="content-section">
+  <link rel="stylesheet" href="frontend/css/inventario.css">
+  
+  <div class="page-title">
+    <h1>INVENTARIO</h1>
+    <p>Gestión de recursos del refugio</p>
+  </div>
+
+  <!-- Resumen rápido -->
+  <div class="inventory-summary">
+    <div class="summary-card">
+      <i class="fas fa-box-open"></i>
+      <div>
+        <h3>Total Artículos</h3>
+        <span class="count">128</span>
+      </div>
+    </div>
+    <div class="summary-card urgent">
+      <i class="fas fa-exclamation-triangle"></i>
+      <div>
+        <h3>Por agotarse</h3>
+        <span class="count">9</span>
+      </div>
+    </div>
+    <div class="summary-card">
+      <i class="fas fa-shopping-cart"></i>
+      <div>
+        <h3>Pedidos pendientes</h3>
+        <span class="count">5</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabla de inventario -->
+  <div class="inventory-table-container">
+    <div class="table-header">
+      <h2>Lista de productos</h2>
+      <div class="table-actions">
+        <input type="text" placeholder="Buscar producto..." class="search-input">
+        <button class="btn-add"><i class="fas fa-plus"></i> Agregar</button>
+      </div>
+    </div>
+    
+    <table class="inventory-table">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Categoría</th>
+          <th>Cantidad</th>
+          <th>Última actualización</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Alimento para perros adulto</td>
+          <td>Alimentos</td>
+          <td class="quantity">15</td>
+          <td>15/06/2024</td>
+          <td><span class="status in-stock">En stock</span></td>
+          <td>
+            <button class="btn-edit"><i class="fas fa-edit"></i></button>
+            <button class="btn-delete"><i class="fas fa-trash"></i></button>
+          </td>
+        </tr>
+        <tr>
+          <td>Antiparasitarios</td>
+          <td>Medicamentos</td>
+          <td class="quantity">42</td>
+          <td>10/06/2024</td>
+          <td><span class="status in-stock">En stock</span></td>
+          <td>
+            <button class="btn-edit"><i class="fas fa-edit"></i></button>
+            <button class="btn-delete"><i class="fas fa-trash"></i></button>
+          </td>
+        </tr>
+        <tr>
+          <td>Toallas sanitarias</td>
+          <td>Limpieza</td>
+          <td class="quantity low-stock">3</td>
+          <td>18/06/2024</td>
+          <td><span class="status low-stock">Por agotarse</span></td>
+          <td>
+            <button class="btn-edit"><i class="fas fa-edit"></i></button>
+            <button class="btn-delete"><i class="fas fa-trash"></i></button>
+          </td>
+        </tr>
+        <tr>
+          <td>Juguetes para gatos</td>
+          <td>Enriquecimiento</td>
+          <td class="quantity">28</td>
+          <td>05/06/2024</td>
+          <td><span class="status in-stock">En stock</span></td>
+          <td>
+            <button class="btn-edit"><i class="fas fa-edit"></i></button>
+            <button class="btn-delete"><i class="fas fa-trash"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

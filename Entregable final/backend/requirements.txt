@@ -1,7 +1,0 @@
-#Librerías necesarias para instalar con pip
-
-fastapi
-uvicorn
-sqlalchemy
-pymysql
-python-dotenv

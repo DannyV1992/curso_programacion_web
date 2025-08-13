@@ -140,4 +140,6 @@ El pipeline genera:
 - **Tailwind CSS**: utility‑first CSS framework utilizado en el frontend
 - **FastAPI**: Framework web moderno para Python
 - **MySQL**: Sistema de gestión de base de datos
-- **Bootstrap**: se compara en el documento de investigación adjunto, como framework alternativo popular con componentes pre‑diseñados y grid responsivo.
+
+## Nota
+- **Bootstrap**: se compara en el documento de investigación adjunto (archivo *Investigacion*), como framework alternativo popular con componentes pre‑diseñados y grid responsivo.

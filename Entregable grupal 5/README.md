@@ -35,6 +35,8 @@ Entregable grupal 5/
 - Ejecutar MySQL y correr sql/init.sql para crear la base refugio_mascotas, tablas, datos de ejemplo e índices.
 
 2) Variables de entorno (.env en backend/):
+Dentro de backend/ se encuentra el archivo .env.example. Este archivo contiene las variables usadas para acceder a la base de datos, sin embargo los archivos llamados `.env` son ignorados por GitHub por lo cual, debes modificar el nombre del archivo cuando hayas clonado el repositorio.
+Simplemente renombra el archivo y edita las credenciales por las que tienes en tu base de datos local.
 
 ```
 DB_HOST=localhost
@@ -42,8 +44,6 @@ DB_NAME=refugio_mascotas
 DB_USER=root
 DB_PASSWORD=root
 ```
-
-database.py incluye utilidades para crear y preparar la base; puede usarse para "setup" completo si se integra en un comando de arranque.
 
 ## Backend (FastAPI)
 - Entrypoint: backend/main.py
@@ -114,7 +114,7 @@ El pipeline genera:
 - Logs de métricas en formato JSON
 - Tabla mascotas_cleaned con scores de calidad de datos
 
-## Estructura de la Base de Datos
+## Estructura de la base de datos
 
 ### Tabla mascotas
 - id (INT, AUTO_INCREMENT, PRIMARY KEY)
@@ -132,7 +132,7 @@ El pipeline genera:
 - data_quality_score (DECIMAL(3,2))
 - processed_at (TIMESTAMP)
 
-## APIs Externas Integradas
+## APIs externas integradas
 - **Dog CEO API**: Obtiene lista de razas de perros
 - **Cat Facts API**: Obtiene datos curiosos sobre gatos
 

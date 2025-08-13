@@ -14,10 +14,10 @@ def main():
     # 1. CONEXIÓN A BASE DE DATOS
     try:
         conn = mysql.connector.connect(
-            host='localhost',
-            user='root',
-            password='root',
-            database='refugio_mascotas'
+            host=os.getenv('DB_HOST', 'localhost'),
+            user=os.getenv('DB_USER', 'root'), 
+            password=os.getenv('DB_PASSWORD', 'root'),
+            database=os.getenv('DB_NAME', 'refugio_mascotas')
         )
         print("✅ Conectado a MySQL")
     except Exception as e:

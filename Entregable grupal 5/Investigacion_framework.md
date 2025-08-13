@@ -135,5 +135,3 @@ Para el proyecto del refugio de mascotas, **Tailwind CSS** resultó ser la opci�
 5. **Mantenimiento** simplificado al evitar CSS adicional
 
 Bootstrap habría sido excelente para un proyecto que requiriera componentes complejos listos para usar (modales, carousels, accordions) y un equipo que priorizara la velocidad de desarrollo inicial sobre la personalización profunda.
-
-Ambos frameworks son herramientas sólidas, y la elección depende fundamentalmente de los requisitos específicos del proyecto, las preferencias del equipo y los objetivos de diseño.

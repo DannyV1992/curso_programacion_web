@@ -1,4 +1,4 @@
-# README — Refugio de Mascotas (FastAPI + MySQL + Frontend con Tailwind)
+# Refugio de Mascotas (FastAPI + MySQL + Frontend con Tailwind)
 
 Proyecto full‑stack para gestionar mascotas en un refugio: API con FastAPI y MySQL, frontend en HTML+JS estilizado con Tailwind, y un pipeline de limpieza y respaldo de datos en Python. El entregable cumple el requerimiento de integrar un framework CSS (Tailwind) y documentar la comparación con otro framework (Bootstrap, en documento separado).
 

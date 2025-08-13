@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refugio de Mascotas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#667eea',
+                        secondary: '#764ba2',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-primary to-secondary text-white">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-2">🐾 Refugio de Mascotas</h1>
+            <p class="text-xl opacity-90">Sistema de gestión para adopciones</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Formulario de Mascota -->
+            <section class="bg-white rounded-xl shadow-lg p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                    <span class="mr-2">📝</span>
+                    <span id="formTitle">Registrar Nueva Mascota</span>
+                </h2>
+                
+                <form id="mascotaForm" class="space-y-4">
+                    <div>
+                        <label for="nombre" class="block text-sm font-medium text-gray-700 mb-2">
+                            Nombre de la mascota
+                        </label>
+                        <input type="text" id="nombre" required
+                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200">
+                    </div>
+                    
+                    <div>
+                        <label for="especie" class="block text-sm font-medium text-gray-700 mb-2">
+                            Especie
+                        </label>
+                        <select id="especie" required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200">
+                            <option value="">Seleccionar especie...</option>
+                            <option value="perro">🐕 Perro</option>
+                            <option value="gato">🐱 Gato</option>
+                            <option value="otro">🐾 Otro</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="edad" class="block text-sm font-medium text-gray-700 mb-2">
+                            Edad (años)
+                        </label>
+                        <input type="number" id="edad" min="0" max="30"
+                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
+                               placeholder="Ej: 3">
+                    </div>
+                    
+                    <div>
+                        <label for="descripcion" class="block text-sm font-medium text-gray-700 mb-2">
+                            Descripción
+                        </label>
+                        <textarea id="descripcion" rows="3"
+                                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200"
+                                  placeholder="Describe las características de la mascota..."></textarea>
+                    </div>
+                    
+                    <div>
+                        <label for="estado" class="block text-sm font-medium text-gray-700 mb-2">
+                            Estado
+                        </label>
+                        <select id="estado"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition duration-200">
+                            <option value="disponible">✅ Disponible para adopción</option>
+                            <option value="adoptado">🏠 Adoptado</option>
+                        </select>
+                    </div>
+                    
+                    <div class="flex gap-3 pt-4">
+                        <button type="submit" id="submitBtn"
+                                class="flex-1 bg-gradient-to-r from-primary to-secondary text-white py-3 px-6 rounded-lg font-medium hover:opacity-90 transform hover:scale-105 transition duration-200">
+                            <span id="submitText">Registrar Mascota</span>
+                        </button>
+                        <button type="button" id="cancelBtn" style="display:none;"
+                                class="px-6 py-3 bg-gray-500 text-white rounded-lg font-medium hover:bg-gray-600 transition duration-200">
+                            Cancelar
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Lista de Mascotas -->
+            <section class="bg-white rounded-xl shadow-lg p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                    <span class="mr-2">🏠</span>
+                    Mascotas en el Refugio
+                </h2>
+                
+                <div id="mascotasList" class="space-y-4">
+                    <div class="text-center py-8">
+                        <div class="animate-spin w-8 h-8 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4"></div>
+                        <p class="text-gray-600">Cargando mascotas...</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Sección de Datos Externos -->
+        <section class="mt-8 bg-white rounded-xl shadow-lg p-6">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                <span class="mr-2">🌐</span>
+                Información Adicional sobre Mascotas
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Razas de Perros -->
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                        <span class="mr-2">🐕</span>
+                        Razas de Perros Populares
+                    </h3>
+                    <div id="dogBreeds" class="text-gray-600">
+                        <div class="animate-pulse flex space-x-2">
+                            <div class="h-6 bg-gray-300 rounded w-20"></div>
+                            <div class="h-6 bg-gray-300 rounded w-24"></div>
+                            <div class="h-6 bg-gray-300 rounded w-16"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Datos Curiosos de Gatos -->
+                <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg p-6">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+                        <span class="mr-2">🐱</span>
+                        Dato Curioso sobre Gatos
+                    </h3>
+                    <div id="catFact" class="text-gray-700 leading-relaxed">
+                        <div class="animate-pulse">
+                            <div class="h-4 bg-gray-300 rounded w-full mb-2"></div>
+                            <div class="h-4 bg-gray-300 rounded w-3/4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center py-6 mt-12">
+        <p>&copy; 2024 Refugio de Mascotas - Sistema de Gestión</p>
+        <p class="text-sm text-gray-400 mt-1">Construido con ❤️ para ayudar a las mascotas</p>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed top-4 right-4 transform translate-x-full transition-transform duration-300 z-50">
+        <div class="bg-white rounded-lg shadow-lg border-l-4 border-green-500 p-4 max-w-sm">
+            <div class="flex items-center">
+                <span id="toastIcon" class="mr-3 text-xl">✅</span>
+                <span id="toastMessage" class="text-gray-700"></span>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -136,12 +136,6 @@ El pipeline genera:
 - **Dog CEO API**: Obtiene lista de razas de perros
 - **Cat Facts API**: Obtiene datos curiosos sobre gatos
 
-## Notas de calidad y seguridad
-- Validaciones en models.py con Pydantic (en backend podrían armonizarse con los modelos de main.py).
-- Configurar usuario y contraseña MySQL seguros en producción.
-- Considerar limitar CORS.
-- Registrar logs y manejar excepciones de red en /api/external-pet-data.
-
 ## Créditos y frameworks
 - **Tailwind CSS**: utility‑first CSS framework utilizado en el frontend
 - **FastAPI**: Framework web moderno para Python
